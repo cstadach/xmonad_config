@@ -9,8 +9,10 @@
  
 import XMonad
 import System.Exit
-import XMonad.Hooks.DynamicLog (dynamicLogXinerama, xmobar)
- 
+import XMonad.Hooks.DynamicLog
+import XMonad.Util.Run(spawnPipe)
+import System.IO
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
  
@@ -70,7 +72,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "exe=`dmenu_run` && eval \"exec $exe\"")
+    , ((modm,               xK_p     ), spawn "exe=\"dmenu_run -l 20 -fn 'Droid Sans Mono-16' -nb '#333335' -sb '#A0A0D0' -nf '#CCCCCF' -sf '#15151A' \" && eval \"exec $exe\"")
  
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -233,8 +235,13 @@ myFocusFollowsMouse = True
 --
 -- > logHook = dynamicLogDzen
 --
-myLogHook = dynamicLogXinerama
 
+myLogHook h = dynamicLogWithPP $ xmobarPP
+                                     { ppOutput = hPutStrLn h,
+                                       ppTitle = xmobarColor "#FFB6B0" "" . shorten 100,
+                                       ppCurrent = xmobarColor "#CEFFAC" "",
+                                       ppSep = "   "
+                                     }
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -250,31 +257,27 @@ myStartupHook = return ()
  
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< xmobar defaults
- 
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will 
--- use the defaults defined in xmonad/XMonad/Config.hs
--- 
--- No need to modify this.
---
-defaults = defaultConfig {
+main = do
+        xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
+
+        xmonad $ defaultConfig
+            {
+            logHook = myLogHook xmproc,
       -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+            terminal           = myTerminal,
+            focusFollowsMouse  = myFocusFollowsMouse,
+            borderWidth        = myBorderWidth,
+            modMask            = myModMask,
+            workspaces         = myWorkspaces,
+            normalBorderColor  = myNormalBorderColor,
+            focusedBorderColor = myFocusedBorderColor,
  
       -- key bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
+            keys               = myKeys,
+            mouseBindings      = myMouseBindings,
  
       -- hooks, layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        logHook            = myLogHook,
-        startupHook        = myStartupHook
-    }
+            layoutHook         = myLayout,
+            manageHook         = myManageHook,
+            startupHook        = myStartupHook
+            }
