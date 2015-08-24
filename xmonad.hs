@@ -84,6 +84,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
      -- Rotate through the available layout algorithms
     , ((mod4Mask,               xK_space ), sendMessage NextLayout)
  
+     -- Lock Screen
+    , ((mod4Mask,               xK_l ), spawn "slock")
+
      -- Switch keyboard layout
     , ((modm,               xK_space ), spawn "/home/christian/.xmonad/bin/layout-switch")
 
