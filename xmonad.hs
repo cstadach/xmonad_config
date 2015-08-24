@@ -150,8 +150,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0              , 0x1008ff13     ), spawn "amixer -D pulse sset Master 4%+")
     , ((0              , 0x1008ff11     ), spawn "amixer -D pulse sset Master 4%-")
     , ((0              , 0x1008ff12     ), spawn "amixer -D pulse sset Master toggle")
-    , ((0              , 0x1008ff02     ),  spawn "xbacklight +20")
-    , ((0              , 0x1008ff03     ),  spawn "xbacklight -20")
+    , ((0              , 0x1008ff02     ), spawn "xbacklight +10")
+    , ((0              , 0x1008ff03     ), spawn "xbacklight -10")
     ]
     ++
  
