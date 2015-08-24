@@ -14,7 +14,7 @@ Config {
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
   font    = "xft:Source Code Pro Medium-16",
-  bgColor = "#333335",
+  bgColor = "#000000",
   fgColor = "grey",
 
   -- Position is top left, taking up 95% of screen.
@@ -46,13 +46,31 @@ Config {
     -- based upon your specific hardware. Or, for a desktop you may want
     -- to just remove this section entirely.
     Run Battery [
-      "-t", "<acstatus>: <left>%", 
-      "--", 
-      "-O", "AC",
-      "-o", "Bat",
-      "-h", "green",
-      "-l", "red"
-    ] 10,
+      "-t",
+      "<left>% / <timeleft>",
+      "-L",
+      "50",
+      "-H",
+      "75",
+      "-h",
+      "green",
+      "-n",
+      "yellow",
+      "-l",
+      "red"] 600,
+    Run ThermalZone 0 [
+      "-t",
+      "<temp> C",
+      "-L",
+      "40",
+      "-H",
+      "79",
+      "-h",
+      "red",
+      "-n",
+      "yellow",
+      "-l",
+      "green"] 60,
     
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
@@ -73,5 +91,5 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ %battery% | %cpu% | %memory% | Vol: %myvolume%        <fc=#e6744c>%date%</fc>     "
+   template = "%StdinReader% }{ %battery% | %thermal0% | %cpu% | %memory% | Vol: %myvolume%        <fc=#e6744c>%date%</fc>     "
 }
