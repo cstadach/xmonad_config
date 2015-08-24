@@ -85,7 +85,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((mod4Mask,               xK_space ), sendMessage NextLayout)
  
      -- Lock Screen
-    , ((mod4Mask,               xK_l ), spawn "slock")
+    , ((mod4Mask,               xK_l ), spawn "playerctl pause && slock")
 
      -- Switch keyboard layout
     , ((modm,               xK_space ), spawn "/home/christian/.xmonad/bin/layout-switch")
