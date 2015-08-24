@@ -140,6 +140,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- Restart xmonad
     , ((modm              , xK_q     ), restart "xmonad" True)
+
+    -- Multimedia Keys
+    -- XF86Play
+    , ((0              , 0x1008ff14     ), spawn "playerctl play-pause")
     ]
     ++
  
