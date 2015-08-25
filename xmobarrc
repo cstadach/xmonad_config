@@ -58,9 +58,9 @@ Config {
       "yellow",
       "-l",
       "red"] 600,
-    Run ThermalZone 0 [
+    Run CoreTemp [
       "-t",
-      "<temp> C",
+      "CPU Temp:<core0> C",
       "-L",
       "40",
       "-H",
@@ -91,5 +91,5 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ %battery% | %thermal0% | %cpu% | %memory% | Vol: %myvolume%        <fc=#e6744c>%date%</fc>     "
+   template = "%StdinReader% }{ %battery% | %coretemp% | %cpu% | %memory% | Vol: %myvolume%        <fc=#e6744c>%date%</fc>     "
 }
