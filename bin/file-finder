@@ -1,9 +1,10 @@
-#!/bin/bash
-INPUT="$(xsel -o | dmenu_run -p  'Datei suche:' )"
-#echo "before if"
-#if [ -n "$input" ]
-#then
-#echo "within if"
-#    result="$(echo '$input' | locate -e -r '$input' | dmenu_run -l 20 -fn 'xft:Source Code Pro Medium-16' -nb '#333335' -sb '#A0A0D0' -nf '#CCCCCF' -sf '#15151A' -p 'Resultat:' )"
-#    xdg-open '$result'
-#fi
+#!/bin/sh
+INPUT="$(xsel -o | dmenu -l 20 -fn "xft:Source Code Pro Medium-16" -nb "#333335" -sb "#A0A0D0" -nf "#CCCCCF" -sf "#15151A" -p "search files:")"
+if [ -n "$INPUT" ]
+then
+  RESULT="$(locate -e -r "$INPUT" | dmenu -l 20 -fn "xft:Source Code Pro Medium-16" -nb "#333335" -sb "#A0A0D0" -nf "#CCCCCF" -sf "#15151A" -p "results:")"
+  if [ -n "$RESULT" ]
+  then
+    xdg-open "$RESULT"
+  fi
+fi

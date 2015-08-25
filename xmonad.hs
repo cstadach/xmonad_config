@@ -74,6 +74,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- launch dmenu
     , ((controlMask,        xK_space     ), spawn "exe=\"dmenu_run -l 20 -fn 'xft:Source Code Pro Medium-16' -nb '#333335' -sb '#A0A0D0' -nf '#CCCCCF' -sf '#15151A' \" && eval \"exec $exe\"")
+
+    -- launch file finder
+    , ((modm .|. shiftMask, xK_o         ), spawn "exe=\"~/.xmonad/bin/file-finder \" && eval \"exec $exe\"")
  
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
