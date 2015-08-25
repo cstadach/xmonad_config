@@ -1,0 +1,9 @@
+#!/bin/bash
+INPUT="$(xsel -o | dmenu_run -p  'Datei suche:' )"
+#echo "before if"
+#if [ -n "$input" ]
+#then
+#echo "within if"
+#    result="$(echo '$input' | locate -e -r '$input' | dmenu_run -l 20 -fn 'xft:Source Code Pro Medium-16' -nb '#333335' -sb '#A0A0D0' -nf '#CCCCCF' -sf '#15151A' -p 'Resultat:' )"
+#    xdg-open '$result'
+#fi
