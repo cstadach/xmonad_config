@@ -32,15 +32,15 @@ Config {
     Run Cpu [
       "-H","50",
       "--high","red"
-    ] 10,
+    ] 300,
 
     -- Gather and format memory usage information
     Run Memory [
       "-t","Mem: <usedratio>%"
-    ] 10,
+    ] 600,
 
     -- Date formatting
-    Run Date "%a %b %_d %H:%M " "date" 10,
+    Run Date "%a %b %_d %H:%M " "date" 60,
 
     -- Battery information. This is likely to require some customization
     -- based upon your specific hardware. Or, for a desktop you may want
@@ -70,7 +70,7 @@ Config {
       "-n",
       "yellow",
       "-l",
-      "green"] 60,
+      "green"] 600,
     
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
