@@ -149,7 +149,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0              , 0x1008ff14     ), spawn "playerctl play-pause")
     , ((0              , 0x1008ff17     ), spawn "playerctl next")
     , ((0              , 0x1008ff16     ), spawn "playerctl previous")
-    , ((0              , 0x1008ff17     ), spawn "playerctl previous")
     , ((0              , 0x1008ff13     ), spawn "amixer -D pulse sset Master 4%+")
     , ((0              , 0x1008ff11     ), spawn "amixer -D pulse sset Master 4%-")
     , ((0              , 0x1008ff12     ), spawn "amixer -D pulse sset Master toggle")
