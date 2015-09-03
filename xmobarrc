@@ -92,5 +92,5 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ %battery% | %coretemp% | %cpu% | %memory% | Vol: %default:Master%        <fc=#e6744c>%date%</fc>     "
+   template = "%StdinReader% }{ %battery% | %coretemp% | %cpu% | %memory% | %default:Master%        <fc=#e6744c>%date%</fc>     "
 }
