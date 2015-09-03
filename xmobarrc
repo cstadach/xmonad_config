@@ -11,6 +11,7 @@
 
 
 Config { 
+  pickBroadest = True,
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
   font    = "xft:Source Code Pro Medium-16",
