@@ -12,6 +12,7 @@ import System.Exit
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
+import XMonad.Layout.NoBorders
 import System.IO
 
 import qualified XMonad.StackSet as W
@@ -61,7 +62,7 @@ myWorkspaces    = ["1:server","2:work","3:mail","4:audio","5","6","7","8","9"]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
+myNormalBorderColor  = "#00ff00"
 myFocusedBorderColor = "#0000ff"
  
 ------------------------------------------------------------------------
@@ -207,7 +208,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = noBorders $ tiled ||| Mirror tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
