@@ -58,7 +58,7 @@ myNumlockMask   = mod2Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:server","2:work","3:mail","4:audio","5","6","7","8","9"]
+myWorkspaces    = ["1:mail","2:work","3","4","5:audio","6","7","8","9"]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -238,8 +238,8 @@ myLayout = noBorders $ tiled ||| Mirror tiled ||| Full
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Thunderbird"    --> doShift "3:mail"
-    , className =? "Spotify"        --> doShift "4:audio"
+    [ className =? "Thunderbird"    --> doShift "1:mail"
+    , className =? "Spotify"        --> doShift "5:audio"
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
