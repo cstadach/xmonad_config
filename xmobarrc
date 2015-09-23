@@ -28,18 +28,6 @@ Config {
   -- list of commands which gather information about your system for
   -- presentation in the bar. 
   commands = [ 
-    -- Gather and format CPU usage information. 
-    -- If it's above 50%, we consider it high usage and make it red.  
-    Run Cpu [
-      "-H","50",
-      "--high","red"
-    ] 300,
-
-    -- Gather and format memory usage information
-    Run Memory [
-      "-t","Mem: <usedratio>%"
-    ] 600,
-
     -- Date formatting
     Run Date "%a %b %_d %H:%M " "date" 60,
 
@@ -47,31 +35,14 @@ Config {
     -- based upon your specific hardware. Or, for a desktop you may want
     -- to just remove this section entirely.
     Run Battery [
-      "-t",
-      "<left>% / <timeleft>",
-      "-L",
-      "50",
-      "-H",
-      "75",
-      "-h",
-      "green",
-      "-n",
-      "yellow",
-      "-l",
-      "red"] 600,
-    Run CoreTemp [
-      "-t",
-      "CPU Temp:<core0> C",
-      "-L",
-      "40",
-      "-H",
-      "79",
-      "-h",
-      "red",
-      "-n",
-      "yellow",
-      "-l",
-      "green"] 600,
+    "-t", "<acstatus>",
+    "-L", "50", "-l", "red",
+    "-H", "75", "-h", "green",
+    "-n", "yellow",
+    "--",
+    "-O", "Charging",
+    "-o", "Battery: <left>% (<timeleft>h)"
+    ] 10,
     
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
@@ -92,5 +63,5 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ %battery% | %coretemp% | %cpu% | %memory% | %default:Master%        <fc=#e6744c>%date%</fc>     "
+   template = "%StdinReader% }{ %battery% | %default:Master%        <fc=#e6744c>%date%</fc>     "
 }
