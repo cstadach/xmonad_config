@@ -141,6 +141,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- toggle the status bar gap (used with avoidStruts from Hooks.ManageDocks)
     , ((modm , xK_f ), sendMessage ToggleStruts)
+       --take a screenshot of entire display 
+    , ((modm , xK_p ), spawn "scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -e 'xdg-open $f'")
+    --
+    --      --take a screenshot of focused window 
+    , ((modm .|. controlMask, xK_p ), spawn "scrot ~/Pictures/window_%Y-%m-%d-%H-%M-%S.png -u -e 'xdg-open $f'")
+
+    --      --take a screenshot of marked area
+    , ((modm .|. shiftMask, xK_p ), spawn "sleep 0.2; scrot ~/Pictures/selection%Y-%m-%d-%H-%M-%S.png -s -e 'xdg-open $f'")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
