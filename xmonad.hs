@@ -13,6 +13,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.NoBorders
+import XMonad.Actions.PhysicalScreens
 import System.IO
 
 import qualified XMonad.StackSet as W
@@ -91,6 +92,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
      -- Lock Screen
      , ((mod4Mask,               xK_l ), do
                                  spawn "playerctl pause"
+                                 spawn "cmus-remote --stop"
                                  spawn "slock"
                                  )
 
@@ -158,9 +160,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Multimedia Keys
     -- XF86Play
-    , ((0              , 0x1008ff14     ), spawn "playerctl play-pause")
-    , ((0              , 0x1008ff17     ), spawn "playerctl next")
-    , ((0              , 0x1008ff16     ), spawn "playerctl previous")
+    , ((0              , 0x1008ff14     ), do
+                                            spawn "cmus-remote -u"
+                                            spawn "playerctl play-pause"
+                                            )
+    , ((0              , 0x1008ff17     ), do
+                                            spawn "cmus-remote -n"
+                                            spawn "playerctl next"
+                                            )
+    , ((0              , 0x1008ff16     ), do
+                                            spawn "cmus-remobe -r"
+                                            spawn "playerctl previous"
+                                            )
     , ((0              , 0x1008ff13     ), spawn "/home/christian/.xmonad/bin/pulse-volume.sh increase")
     , ((0              , 0x1008ff11     ), spawn "/home/christian/.xmonad/bin/pulse-volume.sh decrease")
     , ((0              , 0x1008ff12     ), spawn "/home/christian/.xmonad/bin/pulse-volume.sh toggle")
