@@ -6,7 +6,7 @@
 --
 -- Normally, you'd only override those defaults you care about.
 --
- 
+
 import XMonad
 import System.Exit
 import XMonad.Hooks.DynamicLog
@@ -258,7 +258,7 @@ myLayout = noBorders $ tiled ||| Mirror tiled ||| Full
 --
 myManageHook = composeAll
     [ className =? "Thunderbird"    --> doShift "1:mail"
-    , className =? "Spotify"        --> doShift "5:audio"
+    , className =? "Spotify"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
